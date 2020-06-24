@@ -87,5 +87,13 @@ CELERY_TASK_ALWAYS_EAGER = True
 CELERY_TASK_EAGER_PROPAGATES = True
 
 {%- endif %}
+
+# Allow dev server to have access to static files
+STATICFILES_DIRS = [
+    str(APPS_DIR / "static"),
+    str(REACT_APP_DIR / "build" / "static")
+]
+
+
 # Your stuff...
 # ------------------------------------------------------------------------------

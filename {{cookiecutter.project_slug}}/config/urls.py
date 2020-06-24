@@ -7,10 +7,26 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
+from django.views.decorators.cache import never_cache
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+
 from rest_framework.authtoken.views import obtain_auth_token
+from graphene_file_upload.django import FileUploadGraphQLView
+
+
+# TODO Move this later
+@method_decorator(login_required, name="dispatch")
+@method_decorator(never_cache, name="dispatch")
+@method_decorator(csrf_exempt, name="dispatch")
+class AppView(TemplateView):
+    template_name = "index.html"
+
 
 urlpatterns = [
     path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
+    path("", AppView.as_view(), name="app"),
     path(
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
     ),
@@ -33,6 +49,14 @@ urlpatterns += [
     path("api/", include("config.api_router")),
     # DRF auth token
     path("auth-token/", obtain_auth_token),
+]
+
+urlpatterns += [
+    # GraphQL
+    path(
+        "graphql/",
+        csrf_exempt(FileUploadGraphQLView.as_view(graphiql=True, pretty=True)),
+    ),
 ]
 
 if settings.DEBUG:
