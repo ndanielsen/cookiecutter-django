@@ -5,6 +5,10 @@ Cookiecutter Django
     :target: https://travis-ci.org/pydanny/cookiecutter-django?branch=master
     :alt: Build Status
 
+.. image:: https://readthedocs.org/projects/cookiecutter-django/badge/?version=latest
+    :target: https://cookiecutter-django.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
+
 .. image:: https://pyup.io/repos/github/pydanny/cookiecutter-django/shield.svg
     :target: https://pyup.io/repos/github/pydanny/cookiecutter-django/
     :alt: Updates
@@ -36,8 +40,8 @@ production-ready Django projects quickly.
 Features
 ---------
 
-* For Django 2.2
-* Works with Python 3.7
+* For Django 3.0
+* Works with Python 3.8
 * Renders Django projects with 100% starting test coverage
 * Twitter Bootstrap_ v4 (`maintained Foundation fork`_ also available)
 * 12-Factor_ based settings via django-environ_
@@ -45,8 +49,9 @@ Features
 * Optimized development and production settings
 * Registration via django-allauth_
 * Comes with custom user model ready to go
+* Optional basic ASGI setup for Websockets
 * Optional custom static build using Gulp and livereload
-* Send emails via Anymail_ (using Mailgun_ by default, but switchable)
+* Send emails via Anymail_ (using Mailgun_ by default or Amazon SES if AWS is selected cloud provider, but switchable)
 * Media storage using Amazon S3 or Google Cloud Storage
 * Docker support using docker-compose_ for development and production (using Traefik_ with LetsEncrypt_ support)
 * Procfile_ for deploying to Heroku
@@ -85,7 +90,7 @@ Optional Integrations
 .. _PythonAnywhere: https://www.pythonanywhere.com/
 .. _Traefik: https://traefik.io/
 .. _LetsEncrypt: https://letsencrypt.org/
-.. _pre-commit: https://github.com/pre-commit/pre-commit 
+.. _pre-commit: https://github.com/pre-commit/pre-commit
 
 Constraints
 -----------
@@ -272,7 +277,7 @@ If you do rename your fork, I encourage you to submit it to the following places
 * cookiecutter_ so it gets listed in the README as a template.
 * The cookiecutter grid_ on Django Packages.
 
-.. _cookiecutter: https://github.com/audreyr/cookiecutter
+.. _cookiecutter: https://github.com/cookiecutter/cookiecutter
 .. _grid: https://www.djangopackages.com/grids/g/cookiecutters/
 
 Submit a Pull Request
