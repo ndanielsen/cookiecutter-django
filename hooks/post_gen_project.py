@@ -296,21 +296,6 @@ def remove_aws_dockerfile():
     shutil.rmtree(os.path.join("compose", "production", "aws"))
 
 
-def remove_drf_starter_files():
-    os.remove(os.path.join("config", "api_router.py"))
-    shutil.rmtree(os.path.join("{{cookiecutter.project_slug}}", "users", "api"))
-    os.remove(
-        os.path.join(
-            "{{cookiecutter.project_slug}}", "users", "tests", "test_drf_urls.py"
-        )
-    )
-    os.remove(
-        os.path.join(
-            "{{cookiecutter.project_slug}}", "users", "tests", "test_drf_views.py"
-        )
-    )
-
-
 def remove_storages_module():
     os.remove(os.path.join("{{cookiecutter.project_slug}}", "utils", "storages.py"))
 
@@ -387,9 +372,6 @@ def main():
 
     if "{{ cookiecutter.ci_tool }}".lower() != "gitlab":
         remove_dotgitlabciyml_file()
-
-    if "{{ cookiecutter.use_drf }}".lower() == "n":
-        remove_drf_starter_files()
 
     if "{{ cookiecutter.use_async }}".lower() == "n":
         remove_async_files()
